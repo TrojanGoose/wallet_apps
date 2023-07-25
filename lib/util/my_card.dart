@@ -1,11 +1,21 @@
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
   final double balance;
   final int cardNumber;
   final int expiryMonth;
+  final int expiryYear;
+  final color;
 
-  const MyCard({super.key});
+  const MyCard(
+      {required this.balance,
+      required this.cardNumber,
+      required this.expiryMonth,
+      required this.expiryYear,
+      required this.color,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +25,8 @@ class MyCard extends StatelessWidget {
         width: 300,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-            color: Colors.deepPurple[300],
-            borderRadius: BorderRadius.circular(16)),
-        child: const Column(
+            color: color, borderRadius: BorderRadius.circular(16)),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
@@ -31,7 +40,7 @@ class MyCard extends StatelessWidget {
               height: 10,
             ),
             Text(
-              '\$5,250.20',
+              '\$' + balance.toString(),
               style: TextStyle(color: Colors.white, fontSize: 28),
             ),
             SizedBox(
@@ -42,12 +51,12 @@ class MyCard extends StatelessWidget {
               children: [
                 // card number
                 Text(
-                  '**** 3456',
+                  cardNumber.toString(),
                   style: TextStyle(color: Colors.white),
                 ),
                 // card expiry date
                 Text(
-                  '10/24',
+                  expiryMonth.toString() + '/' + expiryYear.toString(),
                   style: TextStyle(color: Colors.white),
                 )
               ],
